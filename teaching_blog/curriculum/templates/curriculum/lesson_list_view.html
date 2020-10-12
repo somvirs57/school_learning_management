@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{subjects.name}} {% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;" > {{subjects.name}} </h2>
+        <div class="row d-flex justify-content-center text-center">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'curriculum:standard_list' %}">Curriculum</a></li>
+            <li><a href="{% url 'curriculum:subject_list' slug=subjects.standard.slug %}">{{subjects.standard}}</a></li>
+            <li class="disabled-text" >{{subjects.name}}</li>
+          </ul>
+        </div>
+
+        <!-- divider -->
+        <hr style="color:#ff5722;">
+
+        <!-- description -->
+        <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Deleniti
+                  consequuntur.</h4>
+  </div>
+</header>
+{% endblock %}
+
+
+{% block content %}
+<section id="best-features" class="text-center">
+              <h2 class="mb-5 mt-5 font-weight-bold" style="color:#ff5722;">Dive Deeper</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8 mb-5">
+                  <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                    hic
+                                    provident nulla repellat
+                                    facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                    est
+                                    sit pariatur.</p>
+                </div>
+              </div>
+              <!-- class row2 for cards -->
+              <div class="row d-flex justify-content-center mb-3">
+                {% for lesson in subjects.lessons.all %}
+                <div class="col-sm-4 mb-4">
+                  <div class="card box-shadow-hover">
+                    <div class="card-body">
+                      <h5 class="card-title">Chapter-{{lesson.position}}: {{lesson.name}}</h5>
+                      <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                      <a href="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug %}" >
+                      <button type="button" class="button-les"><span>Get Lectures</span></button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+        <div class="row d-flex justify-content-center mb-3">
+          {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
+           <a href="{% url 'curriculum:lesson_create' standard=subjects.standard.slug slug=subjects.slug %}"><button type="button" class="btn btn-success btn-lg btn-bloc" > Add new Lesson </button> </a>
+          {% endif %}
+        </div>
+
+</section>
+
+
+
+
+
+
+{%endblock%}

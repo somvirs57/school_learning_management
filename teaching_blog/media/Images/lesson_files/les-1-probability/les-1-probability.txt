@@ -1,0 +1,59 @@
+Build an NLP-based engine that scans, converts, and organizes handwritten notes into downloadable content.
+
+
+Create a cloud-based platform for teachers to upload and schedule - notes, flowcharts, diagrams, videos, presentations,
+ and others. Educators should be allowed to plan, organize, and display the curriculum for upcoming weeks for increased transparency.
+
+
+Identify and execute apps that allow different users, such as—students, parents, and teachers—to post questions, reply to comments, and 
+tag relevant subjects and users.
+
+
+
+
+-Class
+--subject 
+---daily schedule along with schedule for next week 
+---- notes, video, animation, ppt etc (study material)
+----- doubts (by students)
+------comments, tag (by anyone )
+
+USERS: teachers, student, parents 
+
+MODELS: class, subject, standard, lesson
+	
+required apps: courses and users 
+
+class models: 
+- courses: class, subject, curriculum
+- users: teacher, student, parent 
+
+
+users model: 
+- name 
+- bio
+- profile pic
+- user_type 
+
+class model: 
+- name of class (10, 11 etc.) (id)
+- subjects (foreign key)
+
+subject model: 					
+- name of subject (id)			
+- class (foreign key)			
+- curriculam (foriegn key)		
+
+lesson model: 
+- curriculam id (id)
+- class (foreign key)
+- subject (foreign key)
+- teacher(created_by) (foreign key)
+- 
+
+
+
+-Create users
+--authenticate them to see different things in web app
+
+

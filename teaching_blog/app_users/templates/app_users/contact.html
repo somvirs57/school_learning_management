@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Contact Us {% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;" > Contact Us/Feedback </h2>
+        <div class="row d-flex justify-content-center text-center">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li class="disabled-text" >Contact(Feedback)</li>
+          </ul>
+        </div>
+
+        <!-- divider -->
+        <hr style="color:#ff5722;">
+
+        <!-- description -->
+        <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Deleniti
+                  consequuntur.</h4>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<section class="text-center mt-5">
+              <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Did We Impress You?</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8">
+                  <p class="grey-text">Do let our team know what you feel about this web template for school learning management. This is our attempt
+                  to develop a compelte website using django and python. Your feedback or comments will be valuable to the team.</p>
+                </div>
+              </div>
+</section>
+              <div class="row justify content center">
+              <div class="col-md-12">
+                  <form method="post">
+                    <div class="form-group">
+                      {% csrf_token %}
+                      {{form|crispy}}
+                      <input type="submit" value="Submit Response" class="btn btn-success btn-lg btn-block">
+                    </div>
+                  </form>
+              </div>
+              </div>
+
+{% endblock %}

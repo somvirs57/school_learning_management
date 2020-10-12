@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Lesson Delete {% endblock %}
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;" > Lesson Deletion </h2>
+        <div class="row d-flex justify-content-center text-center">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'curriculum:standard_list' %}">Curriculum</a></li>
+            <li><a href="{% url 'curriculum:subject_list' slug=lessons.Standard.slug %}">{{lessons.Standard.name}}</a></li>
+            <li><a href="{% url 'curriculum:lesson_list' standard=lessons.Standard.slug slug=lessons.subject.slug %}">{{lessons.subject.name}}</a></li>
+            <li><a href="{% url 'curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}">{{lessons.name}}</a></li>
+            <li class="disabled-text" >Lesson Delete</li>
+          </ul>
+        </div>
+
+        <!-- divider -->
+        <hr style="color:#ff5722;">
+
+        <!-- description -->
+        <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Deleniti
+                  consequuntur.</h4>
+  </div>
+</header>
+{% endblock %}
+
+
+
+{% block content %}
+
+<section id="best-features" class="text-center">
+              <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Delete {{lessons.name}}</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8">
+                  <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                    hic
+                                    provident nulla repellat
+                                    facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                    est
+                                    sit pariatur.</p>
+                </div>
+              </div>
+</section>
+
+<h3 class="mb-4" style="color:#ff5722;">Are you sure you want to delete {{lessons.name}} chapter?</h3>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="row">
+        <div class="col-md-4 mb-3 mr-3">
+                <input type="submit" value="Delete" class="btn btn-danger btn-block">
+        </div>
+        <div class="col-md-4 mb-3 mr-3">
+                <a href="{% url 'curriculum:lesson_detail' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}" class="btn btn-warning btn-block">Cancel Deletion</a>
+        </div>
+  </div>
+</form>
+
+{% endblock %}

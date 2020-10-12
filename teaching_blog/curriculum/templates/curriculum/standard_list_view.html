@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Standards {% endblock %}
+
+
+{% block image_block %}
+<header class="info-header">
+  <div id="page-intro" class="container-fluid d-flex align-items-center justify-content-center ">
+    <div class="row d-flex justify-content-center text-center">
+      <div class="col-md-10 text-white">
+        <!-- heading -->
+        <h2 class="display-4 font-weight-bold  p-5 " style="color:#ff5722;" > Standards </h2>
+        <div class="row d-flex justify-content-center text-center">
+          <ul class="breadcrumb">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'curriculum:standard_list' %}">Curriculum</a></li>
+            <li class="disabled-text">Standards</li>
+          </ul>
+        </div>
+
+        <!-- divider -->
+        <hr style="color:#ff5722;">
+
+        <!-- description -->
+        <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Deleniti
+                  consequuntur.</h4>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<!-- section 1 for standards-->
+
+<section id="best-features" class="text-center">
+              <h2 class="mb-5 mt-5 font-weight-bold" style="color:#ff5722;">Dive Into Learning</h2>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8">
+                  <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                    hic
+                                    provident nulla repellat
+                                    facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                    est
+                                    sit pariatur.</p>
+                </div>
+              </div>
+              <!-- class row2 for cards -->
+              <div class="row">
+                      {% for standard in standards %}
+                      <div class="col-md-4 d-flex mb-5 justify-content-center">
+                        <div class="card card-std text-center" style="width: 20rem;">
+                          <div class="card-body text-center">
+                            <h4 class="card-title" style="color:#ff5722;">{{standard.name}}</h4>
+                            <p class="card-text">{{standard.description|truncatechars:75}}</p>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'curriculum:subject_list' slug=standard.slug %}" class="btn btn-primary" style="background-color:#00bcd4;">Lets get started</a>
+                            {%else%}
+                            <p>Register or login to start learning</p>
+                            <a href="{% url 'user_login' %}" class="btn btn-std" style="background-color:#00bcd4;">Login</a>
+                            <a href="{% url 'register' %}" class="btn btn-primary" style="background-color:#00bcd4;">Register</a>
+                            {%endif%}
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+              </div>
+</section>
+
+{%endblock%}

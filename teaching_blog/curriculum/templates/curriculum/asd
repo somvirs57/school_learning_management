@@ -1,0 +1,59 @@
+<!--
+<section class="text-center">
+              <h2 class="mb-0 mt-5 font-weight-bold" style="color:#ff5722;">Lecture Details</h2>
+              <div class="row d-flex justify-content-center mb-3">
+                <blockquote class="blockquote mt-0">
+                  <footer class="blockquote-footer">Created on {{lessons.created_at}} by <cite title="Source Title">{{lessons.created_by}}</cite></footer>
+                  </blockquote> -->
+              <!-- </div> -->
+              <!-- Lecture Video -->
+              <!-- <div class="row d-flex justify-content-center mb-3"> -->
+                <!-- <div id="player-overlay">
+                      <video controls>
+                          <source src="{{lessons.video.url}}" type="video/mp4">
+                        </video>
+                </div> -->
+              <!-- </div> -->
+<!-- </section> -->
+
+<!-- <section class="text-center download-pad"> -->
+            <!-- download content cards -->
+        <!-- <div class="row d-flex justify-content-center mb-3 mt-3"> -->
+          <!-- download presentations -->
+                    <!-- <div class="col-4 mb-4">
+                      <div class="card box-shadow-hover">
+                        <div class="card-body">
+                          <h5 class="card-title">Download Presentations</h5>
+                          <p class="card-text">Download presentations from the lecture</p>
+                          <a href="{{lessons.ppt.url}}" download>
+                          <button type="button" class="button-les"><span>Get Files</span></button>
+                          </a>
+                        </div>
+                      </div>
+                    </div> -->
+          <!-- download notes -->
+                    <!-- <div class="col-4 mb-4">
+                      <div class="card box-shadow-hover">
+                        <div class="card-body">
+                          <h5 class="card-title">Download Notes</h5>
+                          <p class="card-text">Download notes from the lecture</p>
+                          <a href="{{lessons.Notes.url}}" download>
+                          <button type="button" class="button-les"><span>Get Files</span></button>
+                          </a>
+                        </div>
+                      </div>
+                    </div> -->
+          <!-- download video -->
+                    <!-- <div class="col-4 mb-4">
+                      <div class="card box-shadow-hover">
+                        <div class="card-body">
+                          <h5 class="card-title">Download Video</h5>
+                          <p class="card-text">Download Video from the lecture</p>
+                          <a href="{{lessons.video.url}}" download>
+                          <button type="button" class="button-les"><span>Get Files</span></button>
+                          </a>
+                        </div>
+                      </div>
+                    </div> -->
+        <!-- </div> -->
+<!-- </section> -->

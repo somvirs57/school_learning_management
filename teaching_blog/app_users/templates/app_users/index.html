@@ -1,0 +1,188 @@
+{% extends 'base.html'  %}
+{% load static %}
+{%block title %}index page{% endblock%}
+
+{% block image_block%}
+<header>
+<!--Image and mask-->
+          <div id="intro" class="container-fluid d-flex align-items-center justify-content-center h-100">
+            <div class="row d-flex justify-content-center text-center">
+              <div class="col-md-10 text-white">
+                <!-- heading -->
+                <h2 class="display-4 font-weight-bold white-text  p-5 mb-2" style="color:#ff5722;" > Start Learning </h2>
+
+                <!-- divider -->
+                <hr style="color:#ff5722;">
+
+                <!-- description -->
+                <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          Deleniti
+                          consequuntur.</h4>
+                <a href="{% url 'curriculum:standard_list' %}"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;"> Start Now</button> </a>
+
+                <!-- feedback and github -->
+                <div class="row d-flex mt-5 justify-content-center text-center">
+                  <div class="col">
+                    <a href="contact"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;">Send Feedback</button> </a>
+                  </div>
+                  <div class="col">
+                    <a href="https://github.com/somvirs57/school_learning_management"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;"> Get on GitHub</button> </a>
+                  </div>
+                  <div class="col">
+                    <a href="https://www.youtube.com/c/LearningBots"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;"> Subscribe on Youtube</button> </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+</header>
+{%endblock%}
+
+{% block content %}
+
+<main class="mt-5">
+  <div class="container">
+    <!-- section 1 for standards-->
+
+    <section class="text-center">
+                  <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Dive Into Learning</h2>
+                  <!-- class row for description-->
+                  <div class="row d-flex justify-content-center mb-4">
+                    <!-- class column -->
+                    <div class="col-md-8">
+                      <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                        hic
+                                        provident nulla repellat
+                                        facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                        est
+                                        sit pariatur.</p>
+                    </div>
+                  </div>
+                  <!-- class row2 for cards -->
+                  <div class="row">
+                          {% for standard in standards %}
+                          <div class="col-md-4 d-flex mb-5 justify-content-center">
+                            <div class="card text-center" style="width: 18rem;">
+                              <div class="card-body">
+                                <h4 class="card-title" style="color:#ff5722;">{{standard.name}}</h4>
+                                <p class="card-text">{{standard.description|truncatechars:75}}</p>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'curriculum:subject_list' slug=standard.slug %}" class="btn btn-primary" style="background-color:#00bcd4;">Start Learning</a>
+                                {%else%}
+                                <p>Register or login to start learning</p>
+                                <a href="{% url 'user_login' %}" class="btn btn-primary" style="background-color:#00bcd4;">Login</a>
+                                <a href="{% url 'register' %}" class="btn btn-primary" style="background-color:#00bcd4;">Register</a>
+                                {%endif%}
+                              </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                  </div>
+    </section>
+    <hr class="my-5" style="color:#ff5722;">
+    <!-- Section 2: Faculty Members -->
+
+    <section class="text-center">
+      <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Meet Our Faculty</h2>
+      <div class="row d-flex justify-content-center mb-4">
+          <div class="col-md-8">
+            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                              hic
+                              provident nulla repellat
+                              facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                              est
+                              sit pariatur.</p>
+          </div>
+          <div class="row d-flex justify-content-center mb-3">
+          {% for teacher in teachers %}
+          <div class="card mb-3 mr-5 ml-3" style="max-width: 500px;">
+            <div class="row no-gutters">
+                      <div class="col-md-4">
+                        <img src="{{teacher.profile_pic.url|default_if_none:'#'}}" class="card-img" alt="No image found">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title" style="color:#ff5722;">{{teacher.user.username}}</h5>
+                          <p class="card-text">{{teacher.bio|truncatechars:75}}</p>
+                          <p class="card-text"><small class="text-muted"></small></p>
+                        </div>
+                      </div>
+            </div>
+            </div>
+          {% endfor %}
+          </div>
+      </div>
+    </section>
+
+    <hr class="my-5" style="color:#ff5722;">
+  </div>
+
+<!-- section 3 for activities -->
+
+    <section class="text-center full-width container-fluid" id="event-section">
+            <h2 class="mb-3 mt-5 font-weight-bold" style="color:#ff5722;">Upcoming Events</h2>
+            <div class="row d-flex justify-content-center mb-4">
+                <div class="col-md-8">
+                  <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                    hic
+                                    provident nulla repellat
+                                    facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                    est
+                                    sit pariatur.</p>
+                </div>
+              </div>
+            <div class="row d-flex justify-content-center mb-4">
+              <!-- col for event 1 -->
+                            <div class="card mb-3 mr-5 ml-3" style="max-width:450px;max-height:450px;">
+                                <img src="https://static.dribbble.com/users/1783758/screenshots/6386088/vinyl-record-and-cover-presentation-mock-up_2x.png" alt="no image found" width="450" height="450">
+                                <div class="event-mask justify-content-center">
+                                  <div class="row d-flex justify-content-center"> <h2 class="font-weight-bold" style="color:#ff5722;">About the Event</h2> </div>
+                                  <div class="row d-flex justify-content-center">
+                                    <div class="col">
+                                    <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                                      hic
+                                                      provident nulla repellat
+                                                      facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                                      est
+                                                      sit pariatur.</p>
+                                      </div>
+                                   </div>
+                                   <div class="row d-flex justify-content-center">
+                                     <a href="{% url 'user_login' %}" class="btn btn-primary mb-3" style="background-color:#ff5722;">Get Details</a>
+                                   </div>
+                                </div>
+                            </div>
+                            <!--col for event 2  -->
+                            <div class="card mb-3 mr-5 ml-3" style="max-width: 450px;max-height:450px;">
+                                <img src="https://c8.alamy.com/comp/2B8C4RC/debate-dialog-communication-and-education-concept-talking-about-political-opinions-two-cardboard-speech-bubbles-2B8C4RC.jpg" alt="no image found" width="450" height="450">
+                                <div class="event-mask">
+                                  <div class="row d-flex justify-content-center"> <h2 class="font-weight-bold" style="color:#ff5722;">About the Event</h2> </div>
+                                  <div class="row d-flex justify-content-center">
+                                      <div class="col">
+                                          <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                                                            hic
+                                                            provident nulla repellat
+                                                            facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                                                            est
+                                                            sit pariatur.</p>
+                                        </div>
+                                   </div>
+                                   <div class="row d-flex justify-content-center">
+                                     <a href="{% url 'user_login' %}" class="btn btn-primary mb-3" style="background-color:#ff5722;">Get Details</a>
+                                   </div>
+                                </div>
+                            </div>
+                    </div>
+
+                            <!-- button to get all activities -->
+                <div class="row d-flex justify-content-center mt-5 mb-3">
+                    <a href="{% url 'user_login' %}" class="btn btn-primary mb-4" style="background-color:#ff5722;">See All Events</a>
+            </div>
+    </section>
+  <hr class="my-5" style="color:#ff5722;">
+</main>
+
+
+{%endblock%}
