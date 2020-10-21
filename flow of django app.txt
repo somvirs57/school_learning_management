@@ -1,0 +1,62 @@
+- create a virtual environment 
+- install django
+- django-admin startproject <project name>
+- django admin startapp <app name>
+- 	add the app to settings.py in installed apps
+- 	add views in app from views.py
+- 	map this view to urls.py (using url mapping or include function)
+- add templates
+- 	add templates folder and add subdirectories of each app  
+- 	change the directory to get these templates in project settings (DIR): 
+	adding the templates dir to the django project to fetch html files: TEMPLATE_DIR 
+- 	adding this in templateslist in settings.py 
+- 	create html file inside the templates directory and put html code
+- Edit views.py to take the template
+- make all the models 
+- 	python manage.py migrate
+- 	register the changes in model: python manage.py makemigrations <app name>
+- 	python manage.py migrate
+- 	register your models in admin.py file of that application
+- 	create superuser to get access to admin interface
+- create a forms.py to use the models in front end for users (django-crispy-forms for bootstrap support)
+- create templates for registration, login, base, index html files in respective subdirectory of templates folder
+	create a base.html and use template tagging to extend this on all other pages
+- a to and forth between forms, html and views files to setup what we want. 
+
+PYHTON MANAGE.PY RUNSERVER	
+- 
+- 
+
+
+
+open python anywhere 
+go to console and type "mkvirtualenv --python=python3.7 teaching_blog(env name)"
+install dependencies 
+which django-admin.py to check if the django is successfully installed and working
+git clone <repo name>
+get dir list using ls and get into file 
+migrate and make migrations like we do locally
+create superuser
+go to web, add project 
+add virtual env on path (/home/somvirs57/.virtualenvs/teaching_blog)
+open bash console in virtual env and get the working directory by getting 
+		into the directory and typing pwd
+paste this path into source code directory
+
+setup wsgi.py file - delete hello world
+		   - go to django 
+		- uncomment import os,
+		- change path to your working path
+		-add os.chdir(path)
+		-settings environment to your settings file
+
+add site to allowed host in settings
+		
+add static files - staic , media and admin/static
+
+
+- 
+- 
+- 
+- 
+-  
