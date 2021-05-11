@@ -218,3 +218,13 @@ video {
   height: 100%;
 }
 /* responsive video */
+#class-time-table{
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+#class-time-table, #class-time-table th, #class-time-table td{
+  border:1px solid black;
+}
+#class-time-table td{
+  padding: 5px 10px;
+}

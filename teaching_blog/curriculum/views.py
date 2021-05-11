@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import (TemplateView, DetailView,
                                     ListView, CreateView,
                                     UpdateView,DeleteView,FormView,)
-from .models import Standard, Subject, Lesson, Comment
+from .models import Standard, Subject, Lesson, Comment, WorkingDays, TimeSlots
 from django.urls import reverse_lazy
 from .forms import CommentForm,ReplyForm, LessonForm
 from django.http import HttpResponseRedirect
@@ -16,6 +16,9 @@ class StandardListView(ListView):
 
 class SubjectListView(DetailView):
     context_object_name = 'standards'
+    extra_context = {
+        'slots': TimeSlots.objects.all()
+    }
     model = Standard
     template_name = 'curriculum/subject_list_view.html'
 

@@ -78,6 +78,29 @@ class Lesson(models.Model):
     def get_absolute_url(self):
         return reverse('curriculum:lesson_list', kwargs={'slug':self.subject.slug, 'standard':self.Standard.slug})
 
+class WorkingDays(models.Model):
+    standard = models.ForeignKey(Standard, on_delete=models.CASCADE,related_name='standard_days')
+    day = models.CharField(max_length=100)
+    def __str__(self):
+        return self.day
+
+class TimeSlots(models.Model):
+    standard = models.ForeignKey(Standard, on_delete=models.CASCADE,related_name='standard_time_slots')
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return str(self.start_time) + ' - ' + str(self.end_time) 
+
+class SlotSubject(models.Model):
+    standard = models.ForeignKey(Standard, on_delete=models.CASCADE,related_name='standard_slots')
+    day = models.ForeignKey(WorkingDays, on_delete=models.CASCADE,related_name='standard_slots_days')
+    slot = models.ForeignKey(TimeSlots, on_delete=models.CASCADE,related_name='standard_slots_time')
+    slot_subject = models.ForeignKey(Subject, on_delete=models.CASCADE,related_name='standard_slots_subject')
+
+    def __str__(self):
+        return str(self.standard)+ ' - ' + str(self.day) + ' - ' + str(self.slot) + ' - ' + str(self.slot_subject)
+
 class Comment(models.Model):
     lesson_name = models.ForeignKey(Lesson,null=True, on_delete=models.CASCADE,related_name='comments')
     comm_name = models.CharField(max_length=100, blank=True)
